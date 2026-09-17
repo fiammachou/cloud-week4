@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cloud Services - Week 4</title>
+</head>
+<body>
+    <h1>Cloud Services - Week 4</h1>
+    
+    <p>Application version: 1.0.1</p>
+
+    <p>Frontend is working.</p>
+
+    <h2>Database information</h2>
+    <p>Number of visits: <span id="visits">Loading...</span></p>
+
+    <script>
+        fetch('/api/visits')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('visits').textContent = data.visits;
+            })
+            .catch(error => {
+                document.getElementById('visits').textContent = 'Error';
+                console.error(error);
+            });
+    </script>
+</body>
+</html>

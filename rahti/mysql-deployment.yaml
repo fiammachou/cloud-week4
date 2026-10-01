@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: week4-mysql
+  name: week5-mysql
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: week4-mysql
+      app: week5-mysql
   template:
     metadata:
       labels:
-        app: week4-mysql
+        app: week5-mysql
     spec:
       containers:
         - name: mysql
@@ -19,22 +19,22 @@ spec:
             - name: MYSQL_DATABASE
               valueFrom:
                 configMapKeyRef:
-                  name: week4-app-config
+                  name: week5-app-config
                   key: DB_NAME
             - name: MYSQL_USER
               valueFrom:
                 configMapKeyRef:
-                  name: week4-app-config
+                  name: week5-app-config
                   key: DB_USER
             - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: week4-db-secret
+                  name: week5-db-secret
                   key: DB_PASSWORD
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: week4-db-secret
+                  name: week5-db-secret
                   key: MYSQL_ROOT_PASSWORD
           ports:
             - containerPort: 3306
@@ -46,7 +46,7 @@ spec:
       volumes:
         - name: mysql-storage
           persistentVolumeClaim:
-            claimName: week4-mysql-data
+            claimName: week5-mysql-data
         - name: mysql-init
           configMap:
-            name: week4-mysql-init
+            name: week5-mysql-init
